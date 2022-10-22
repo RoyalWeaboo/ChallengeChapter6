@@ -50,12 +50,7 @@ fun makeStatusNotification(message: String, context: Context) {
     NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
 }
 
-/**
- * Blurs the given Bitmap image
- * @param bitmap Image to blur
- * @param applicationContext Application context
- * @return Blurred bitmap image
- */
+
 fun blurBitmap(bitmap: Bitmap, applicationContext: Context): Bitmap {
     lateinit var rsContext: RenderScript
     try {
@@ -82,15 +77,9 @@ fun blurBitmap(bitmap: Bitmap, applicationContext: Context): Bitmap {
     }
 }
 
-/**
- * Writes bitmap to a temporary file and returns the Uri for the file
- * @param applicationContext Application context
- * @param bitmap Bitmap to write to temp file
- * @return Uri for temp file with bitmap
- * @throws FileNotFoundException Throws if bitmap file cannot be found
- */
 fun writeBitmapToFile(applicationContext: Context, bitmap: Bitmap): Uri {
-    val name = String.format("blur-filter-output-%s.png", UUID.randomUUID().toString())
+//    val name = String.format("IMG-BLUR-%s.png", UUID.randomUUID().toString())
+    val name = "Blurred-Image.png"
     val outputDir = File(applicationContext.filesDir, OUTPUT_PATH)
     if (!outputDir.exists()) {
         outputDir.mkdirs() // should succeed

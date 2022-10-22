@@ -14,14 +14,14 @@ class BlurImageWorker(ctx : Context, param : WorkerParameters): Worker(ctx, para
         val appContext = applicationContext
         val resourceUri = inputData.getString(KEY_IMAGE_URI)
 
-        return try {
-//            make sure ResourceUri from data is not empty
-            if (TextUtils.isEmpty(resourceUri)) {
+        makeStatusNotification("Started Blurring image", appContext)
+
+        return try{
+            if(TextUtils.isEmpty(resourceUri)){
                 Log.e("Uri Status", "Invalid input uri")
                 throw IllegalArgumentException("Invalid input uri")
             }
 
-//            buat bitmap dari gambar (decodeSource), picture yang nantinya akan diteruskan
             val resolver = appContext.contentResolver
             val picture = BitmapFactory.decodeStream(
                 resolver.openInputStream(Uri.parse(resourceUri)))
@@ -35,12 +35,11 @@ class BlurImageWorker(ctx : Context, param : WorkerParameters): Worker(ctx, para
 //            buat output URI sementara, agar dapat diakses untuk proses selanjutnya
             val outputData = workDataOf(KEY_IMAGE_URI to outputUri.toString())
             Result.success(outputData)
-
-        } catch (throwable: Throwable) {
+        }catch (throwable: Throwable){
             Log.e("Blur Status", "Error applying blur")
             throwable.printStackTrace()
             Result.failure()
         }
-
     }
+
 }

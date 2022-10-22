@@ -1,5 +1,66 @@
 <resources>
     <string name="app_name">ChallengeChapter6</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
+
+    <string name="username" translatable="false">username</string>
+    <string name="tmdblogomasuk">tmdbLogoMasuk</string>
+    <string name="password" translatable="false">password</string>
+    <string name="button_login">Masuk</string>
+    <string name="tv_belumpunyaakun">Belum Punya Akun ?</string>
+    <string name="tv_daftar">Daftar Sekarang</string>
+    <string name="tv_login">Masuk</string>
+    <string name="tv_register">Daftar</string>
+    <string name="tv_sudahpunyaakun">Sudah Punya Akun ?</string>
+    <string name="konfirmasi_password">Konfirmasi Password</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="judulFilm">Judul</string>
+    <string name="movieRating" translatable="false">5</string>
+    <string name="movieLanguage">Bahasa</string>
+    <string name="movieDate" translatable="false">2022–10–07</string>
+    <string name="movie_image_description">garmbar film</string>
+    <string name="perbarui_profil">Perbarui Profil</string>
+    <string name="keluar">Keluar</string>
+    <string name="profilTitle">Profil</string>
+    <string name="desc_title">Detail Film</string>
+    <string name="lorem_ipsum" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis risus ligula, sit amet sagittis magna viverra eget. Nam in erat venenatis, vehicula diam et, molestie lorem. Duis hendrerit rhoncus elit, in congue tellus consectetur vitae. Maecenas ut est non urna vulputate molestie imperdiet nec velit. Curabitur quis euismod arcu. Maecenas at tellus sit amet nulla cursus cursus. Etiam non fermentum ante, ut porta magna. Vivamus elementum pretium luctus. Maecenas consequat lectus non facilisis euismod.</string>
+    <string name="rating" translatable="false">Rating :</string>
+    <string name="tanggal_rilis">Tanggal Rilis :</string>
+    <string name="welcome_user">Selamat Datang,</string>
+    <string name="home">Beranda</string>
+
+    <!--toast-->
+    <string name="pass_tidak_sesuai">Password tidak sesuai !</string>
+    <string name="success_reg">Berhasil mendaftarkan akun baru !</string>
+    <string name="failed_reg">Gagal mendaftarkan akun baru !</string>
+    <string name="no_data">Tidak ada data untuk ditampilkan !</string>
+    <string name="empty_login_input">Username dan Password tidak boleh kosong !</string>
+    <string name="success_login">Berhasil Masuk !</string>
+    <string name="success_logout">Berhasil Logout !</string>
+    <string name="failed_login">Username atau password salah !</string>
+    <string name="empty_login_database">Tidak ada data akun !</string>
+    <string name="success_update">Berhasil memperbarui data profil !</string>
+    <string name="detail_film">Sinopsis Film :</string>
+    <string name="bahasa">Bahasa :</string>
+    <string name="detailmovieposter">Poster Film</string>
+    <string name="back_to_home">Kembali ke Beranda</string>
+    <string name="profil">Profil</string>
+    <string name="ganti_bahasa">Ganti Bahasa</string>
+    <string name="foto_profil">Foto Profil</string>
+    <string name="perbarui_data_user">Perbarui Data User</string>
+    <string name="film_favoritmu">Film Favoritmu</string>
+    <string name="tambah_film_fav">Berhasil menambahkan ke favorit !</string>
+
+    <string name="dialog_cl_title">Ganti Bahasa</string>
+    <string name="dialog_cl_content">"Ganti bahasa menjadi bahasa inggris ?
+        Aplikasi akan direstart untuk menerapkan perubahan"</string>
+    <string name="dialog_yes">"Konfirmasi"</string>
+    <string name="dialog_no">"Batalkan"</string>
+    <string name="dialog_logout_title">Keluar</string>
+    <string name="dialog_logout_content">Keluar dari akun ini ?</string>
+    <string name="profile_picture_empty">Tidak ada Foto Profil</string>
+    <string name="choose_picture">Pilih gambar dari</string>
+    <string name="dialog_perm_title">Izin Aplikasi di tolak</string>
+    <string name="dialog_perm_content">Izin Aplikasi di tolak, Berikan izin di pengaturan aplikasi.</string>
+
 </resources>

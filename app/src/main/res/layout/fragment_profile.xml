@@ -16,7 +16,7 @@
             app:titleTextColor="@color/white">
 
             <ImageView
-                android:contentDescription="Back to home"
+                android:contentDescription="@string/back_to_home"
                 android:id="@+id/arrowBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -27,11 +27,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:text="Profile" />
+                android:text="@string/profilTitle" />
 
             <ImageView
                 android:id="@+id/changeLanguage"
-                android:contentDescription="Change Language"
+                android:contentDescription="@string/ganti_bahasa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -41,15 +41,15 @@
 
 
         <ImageView
-            android:contentDescription="Profile Picture"
             android:id="@+id/ivProfile"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_below="@id/profileToolbar"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
-            android:background="#888888"
-            android:src="@drawable/fruit" />
+            android:background="#EFEFEF"
+            android:contentDescription="@string/foto_profil"
+            android:src="@drawable/ic_baseline_person_24" />
 
         <ImageView
             android:id="@+id/ivEdit"
@@ -60,7 +60,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:src="@drawable/ic_baseline_edit_24"
-            android:contentDescription="Update" />
+            android:contentDescription="@string/perbarui_data_user" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name"
@@ -72,7 +72,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
-            android:hint="Username">
+            android:hint="@string/username">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUsername"
@@ -90,7 +90,7 @@
             android:layout_below="@id/name"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:hint="Nama Lengkap">
+            android:hint="@string/nama_lengkap">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNamaLengkap"
@@ -109,7 +109,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:hint="Password"
+            android:hint="@string/password"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -136,8 +136,8 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="4dp"
                 android:backgroundTint="@color/teal_700"
-                android:text="Update"/>
-            <!--                android:visibility="gone"-->
+                android:text="@string/perbarui_profil"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btnLogout"
@@ -147,15 +147,13 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/teal_700"
-                android:visibility="gone"
-                android:text="Logout" />
+                android:text="@string/keluar" />
         </LinearLayout>
 
         <ProgressBar
             android:id="@+id/profileProgressBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
             android:background="#28858585"
             android:padding="180dp" />
 

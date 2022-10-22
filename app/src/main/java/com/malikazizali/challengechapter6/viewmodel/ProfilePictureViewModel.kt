@@ -18,16 +18,12 @@ class ProfilePictureViewModel (application : Application): ViewModel() {
     private val workManager = WorkManager.getInstance(application)
     private var imageUri: Uri? = null
 
-
-    init {
-        // This transformation makes sure that whenever the current work Id changes the WorkInfo
-        // the UI is listening to changes
-        imageUri = getImageUri(application.applicationContext)
-
+    fun setImageUri(uri : Uri){
+        imageUri = uri
     }
 
     //    make WorkRequest & beritahu WM untuk jalankan
-    internal fun applyBlur(blurLevel: Int) {
+    internal fun applyBlur() {
         val blurRequest = OneTimeWorkRequestBuilder<BlurImageWorker>()
             .setInputData(createInputDataForUri())
             .build()
@@ -49,9 +45,9 @@ class ProfilePictureViewModel (application : Application): ViewModel() {
 
         return Uri.Builder()
             .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-            .authority(resources.getResourcePackageName(R.drawable.fruit))
-            .appendPath(resources.getResourceTypeName(R.drawable.fruit))
-            .appendPath(resources.getResourceEntryName(R.drawable.fruit))
+            .authority(resources.getResourcePackageName(R.drawable.ic_baseline_person_24))
+            .appendPath(resources.getResourceTypeName(R.drawable.ic_baseline_person_24))
+            .appendPath(resources.getResourceEntryName(R.drawable.ic_baseline_person_24))
             .build()
     }
 
