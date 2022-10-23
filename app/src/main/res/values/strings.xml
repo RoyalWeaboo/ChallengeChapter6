@@ -50,6 +50,7 @@
     <string name="perbarui_data_user">Perbarui Data User</string>
     <string name="film_favoritmu">Film Favoritmu</string>
     <string name="tambah_film_fav">Berhasil menambahkan ke favorit !</string>
+    <string name="hapus_film_fav">Berhasil menghapus film !</string>
 
     <string name="dialog_cl_title">Ganti Bahasa</string>
     <string name="dialog_cl_content">"Ganti bahasa menjadi bahasa inggris ?

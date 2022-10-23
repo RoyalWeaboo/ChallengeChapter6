@@ -59,6 +59,20 @@ class FavoritesFragment : Fragment() {
                 adapter = FavoritesAdapter(it)
                 binding.rvFavorites.adapter = adapter
 
+                adapter.onDeleteFavorites={
+                    binding.homeProgressBar.visibility = View.VISIBLE
+                    val favViewModel = ViewModelProvider(requireActivity()).get(FavoritesViewModel::class.java)
+                    favViewModel.callDeleteFavMovie(it)
+                    favViewModel.delFavMovie().observe(viewLifecycleOwner, Observer {
+                        if(it != null){
+                            binding.homeProgressBar.visibility = View.GONE
+                            Toast.makeText(requireActivity(), context?.getString(R.string.hapus_film_fav), Toast.LENGTH_SHORT).show()
+                        }
+                        binding.homeProgressBar.visibility = View.GONE
+                    })
+                }
+                adapter.notifyDataSetChanged()
+
             } else {
                 Toast.makeText(requireActivity(), context?.getString(R.string.no_data), Toast.LENGTH_SHORT).show()
             }

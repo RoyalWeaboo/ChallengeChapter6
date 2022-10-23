@@ -40,16 +40,16 @@ class ProfilePictureViewModel (application : Application): ViewModel() {
     }
 
     //    get image URI
-    private fun getImageUri(context: Context): Uri {
-        val resources = context.resources
-
-        return Uri.Builder()
-            .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-            .authority(resources.getResourcePackageName(R.drawable.ic_baseline_person_24))
-            .appendPath(resources.getResourceTypeName(R.drawable.ic_baseline_person_24))
-            .appendPath(resources.getResourceEntryName(R.drawable.ic_baseline_person_24))
-            .build()
-    }
+//    private fun getImageUri(context: Context): Uri {
+//        val resources = context.resources
+//
+//        return Uri.Builder()
+//            .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+//            .authority(resources.getResourcePackageName(R.drawable.ic_baseline_person_24))
+//            .appendPath(resources.getResourceTypeName(R.drawable.ic_baseline_person_24))
+//            .appendPath(resources.getResourceEntryName(R.drawable.ic_baseline_person_24))
+//            .build()
+//    }
 
 }
 

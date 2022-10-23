@@ -7,6 +7,8 @@ import com.malikazizali.challengechapter6.model.FavoritesResponseItem
 import com.malikazizali.challengechapter6.model.Result
 import com.malikazizali.challengechapter6.network.RestfulApiFavorites
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,11 +18,13 @@ import javax.inject.Inject
 class FavoritesViewModel@Inject constructor(var api : RestfulApiFavorites): ViewModel() {
     var liveDataFav: MutableLiveData<List<FavoritesResponseItem>>
     var postFav: MutableLiveData<FavoritesResponseItem>
+    var delFav: MutableLiveData<Int>
     var loading = MutableLiveData<Boolean>()
 
     init {
         liveDataFav = MutableLiveData()
         postFav = MutableLiveData()
+        delFav = MutableLiveData()
         callApiFilm()
     }
 
@@ -30,6 +34,10 @@ class FavoritesViewModel@Inject constructor(var api : RestfulApiFavorites): View
 
     fun postFavMovie(): MutableLiveData<FavoritesResponseItem> {
         return postFav
+    }
+
+    fun delFavMovie(): MutableLiveData<Int> {
+        return delFav
     }
 
     fun callApiFilm() {
@@ -77,5 +85,28 @@ class FavoritesViewModel@Inject constructor(var api : RestfulApiFavorites): View
 
             })
     }
+
+    fun callDeleteFavMovie(id: Int) {
+            api.deleteMovie(id)
+                .enqueue(object : Callback<Int> {
+                    override fun onResponse(
+                        call: Call<Int>,
+                        response: Response<Int>
+                    ) {
+                        if (response.isSuccessful) {
+                            delFav.postValue(response.body())
+                        } else {
+                            Log.d("data", response.body().toString())
+                        }
+                        callApiFilm()
+                        loading.postValue(false)
+                    }
+
+                    override fun onFailure(call: Call<Int>, t: Throwable) {
+                        Log.d("data", call.toString())
+                        callApiFilm()
+                    }
+                })
+        }
 
 }

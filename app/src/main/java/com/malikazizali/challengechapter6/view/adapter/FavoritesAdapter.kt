@@ -7,16 +7,19 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.malikazizali.challengechapter6.R
+import com.malikazizali.challengechapter6.databinding.ItemFavoritesBinding
 import com.malikazizali.challengechapter6.databinding.ItemMovieBinding
 import com.malikazizali.challengechapter6.model.FavoritesResponseItem
+import com.malikazizali.challengechapter6.model.Result
 
 class FavoritesAdapter (var listMovie : List<FavoritesResponseItem>): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
-    class ViewHolder(var binding : ItemMovieBinding): RecyclerView.ViewHolder(binding.root) {
+    var onDeleteFavorites : ((Int)->Unit)? = null
+    class ViewHolder(var binding : ItemFavoritesBinding): RecyclerView.ViewHolder(binding.root) {
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemFavoritesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return  ViewHolder(view)
     }
 
@@ -37,6 +40,10 @@ class FavoritesAdapter (var listMovie : List<FavoritesResponseItem>): RecyclerVi
             arg.putString("detail", listMovie[position].overview)
 
             Navigation.findNavController(holder.itemView).navigate(R.id.action_favoritesFragment_to_detailFragment,arg)
+        }
+
+        holder.binding.delFav.setOnClickListener {
+            onDeleteFavorites?.invoke(listMovie[position].id.toInt())
         }
 
     }

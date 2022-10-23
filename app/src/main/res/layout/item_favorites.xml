@@ -23,6 +23,7 @@
             android:contentDescription="@string/movie_image_description" />
 
         <LinearLayout
+            android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/moviePoster"
@@ -74,5 +75,15 @@
                 android:text="@string/movieLanguage"
                 android:textColor="@color/black" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/delFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/ic_baseline_delete_24" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

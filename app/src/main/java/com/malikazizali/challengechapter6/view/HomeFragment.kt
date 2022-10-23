@@ -85,7 +85,7 @@ class HomeFragment : Fragment() {
                     favViewModel.postFavMovie().observe(viewLifecycleOwner, Observer {
                         if(it != null){
                             binding.homeProgressBar.visibility = View.GONE
-                            Toast.makeText(requireActivity(), context?.getString(R.string.tambah_film_fav), Toast.LENGTH_LONG).show()
+                            Toast.makeText(requireActivity(), context?.getString(R.string.tambah_film_fav), Toast.LENGTH_SHORT).show()
                         }
                         binding.homeProgressBar.visibility = View.GONE
                     })

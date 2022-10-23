@@ -38,8 +38,8 @@ class RegisterFragment : Fragment() {
             binding.registerProgressBar.visibility = View.VISIBLE
             if (passwordInput.toString() == conPassInput.toString()) {
                 userViewModel.editData(
-                    usernameInput.toString(),
                     namaLengkapInput.toString(),
+                    usernameInput.toString(),
                     passwordInput.toString(),
                     "false"
                 )

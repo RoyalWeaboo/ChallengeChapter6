@@ -51,5 +51,6 @@
     <string name="choose_picture">Choose picture from</string>
     <string name="dialog_perm_content">Permission is denied, Please allow permissions from App Settings.</string>
     <string name="dialog_perm_title">Permission Denied</string>
+    <string name="hapus_film_fav">Success deleting favorites !</string>
 
 </resources>

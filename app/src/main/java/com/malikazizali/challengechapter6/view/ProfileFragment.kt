@@ -76,8 +76,9 @@ class ProfileFragment : Fragment() {
                     newPassword,
                     "true"
                 )
-                disableEditMode()
+                binding.profileProgressBar.visibility = View.GONE
                 binding.btnEdit.visibility = View.GONE
+                disableEditMode()
             }
             getSavedData()
         }
@@ -255,12 +256,29 @@ class ProfileFragment : Fragment() {
             .show()
     }
 
+    //    camera
+    private fun openCamera() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        cameraResult.launch(cameraIntent)
+    }
+
+    private val cameraResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                handleCameraImage(result.data)
+            }
+        }
+    private fun handleCameraImage(intent: Intent?) {
+        val bitmap = intent?.extras?.get("data") as Bitmap
+        binding.ivProfile.setImageBitmap(bitmap)
+    }
+
+    // Gallery
     private fun openGallery() {
         requireActivity().intent.type = "image/*"
         galleryResult.launch("image/*")
     }
 
-    // Gallery
     private val galleryResult =
         registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
             blurViewModel.setImageUri(result!!)
@@ -281,25 +299,33 @@ class ProfileFragment : Fragment() {
         val resolver = requireActivity().applicationContext.contentResolver
         val picture = BitmapFactory.decodeStream(
             resolver.openInputStream(Uri.parse(uri.toString())))
-        writeBitmapToFile(requireActivity(), picture)
         blurViewModel.applyBlur()
+        writeBitmapToFile(requireActivity(), picture)
+        //save normal version
+        saveNormalProfileImage(requireActivity(), picture)
     }
 
-    //    camera
-    private fun openCamera() {
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        cameraResult.launch(cameraIntent)
-    }
+    fun saveNormalProfileImage(applicationContext: Context, bitmap: Bitmap): Uri {
+        val name = "Profile-Image.png"
+        val outputDir = File(applicationContext.filesDir, "profile_image")
+        if (!outputDir.exists()) {
+            outputDir.mkdirs() // should succeed
+        }
+        val outputFile = File(outputDir, name)
+        var out: FileOutputStream? = null
+        try {
+            out = FileOutputStream(outputFile)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0 /* ignored for PNG */, out)
+        } finally {
+            out?.let {
+                try {
+                    it.close()
+                } catch (ignore: IOException) {
+                }
 
-    private val cameraResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                handleCameraImage(result.data)
             }
         }
-    private fun handleCameraImage(intent: Intent?) {
-        val bitmap = intent?.extras?.get("data") as Bitmap
-        binding.ivProfile.setImageBitmap(bitmap)
+        return Uri.fromFile(outputFile)
     }
 
 }
