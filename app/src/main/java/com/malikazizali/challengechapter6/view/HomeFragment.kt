@@ -10,8 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.malikazizali.challengechapter6.R
 import com.malikazizali.challengechapter6.databinding.FragmentHomeBinding
+import com.malikazizali.challengechapter6.model.SavedPreference
 import com.malikazizali.challengechapter6.view.adapter.MovieAdapter
 import com.malikazizali.challengechapter6.viewmodel.FavoritesViewModel
 import com.malikazizali.challengechapter6.viewmodel.MovieViewModel
@@ -37,14 +39,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
-
-        userViewModel.dataUser.observe(requireActivity()) {
-            namaLengkap = it.namaLengkap
-            session = it.session
+        if(GoogleSignIn.getLastSignedInAccount(requireActivity())!=null){
+            getGoogleData()
+        }else{
+            getUserData()
         }
-
-        binding.greetingText.text = namaLengkap
 
         setViewModelToAdapter()
 
@@ -56,6 +55,21 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_favoritesFragment)
         }
 
+    }
+
+    private fun getGoogleData(){
+        namaLengkap = SavedPreference.getUsername(requireActivity())!!
+        binding.greetingText.text = namaLengkap
+    }
+
+    private fun getUserData(){
+        userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+
+        userViewModel.dataUser.observe(requireActivity()) {
+            namaLengkap = it.namaLengkap
+            session = it.session
+        }
+        binding.greetingText.text = namaLengkap
     }
 
     private fun setViewModelToAdapter() {

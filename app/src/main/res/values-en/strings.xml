@@ -52,5 +52,6 @@
     <string name="dialog_perm_content">Permission is denied, Please allow permissions from App Settings.</string>
     <string name="dialog_perm_title">Permission Denied</string>
     <string name="hapus_film_fav">Success deleting favorites !</string>
+    <string name="login_with_google">Login With Google</string>
 
 </resources>

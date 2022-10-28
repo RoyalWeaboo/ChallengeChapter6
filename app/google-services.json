@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "571067766246",
+    "project_id": "binarchallenge-27569",
+    "storage_bucket": "binarchallenge-27569.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571067766246:android:526ba6f2f89f58b4f23227",
+        "android_client_info": {
+          "package_name": "com.malikazizali.challengechapter6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571067766246-vlkinot8fk9bse5ibm0isoce472ocvpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7APQL6mOq6dXel-2JqaZbEVZAX4wUQVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571067766246-vlkinot8fk9bse5ibm0isoce472ocvpc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

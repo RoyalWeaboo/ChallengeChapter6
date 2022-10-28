@@ -28,6 +28,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //throw RuntimeException("Test Crash") // Force a crash
 
         userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
 

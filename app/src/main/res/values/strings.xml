@@ -63,5 +63,6 @@
     <string name="choose_picture">Pilih gambar dari</string>
     <string name="dialog_perm_title">Izin Aplikasi di tolak</string>
     <string name="dialog_perm_content">Izin Aplikasi di tolak, Berikan izin di pengaturan aplikasi.</string>
+    <string name="login_with_google">Masuk Dengan Google</string>
 
 </resources>

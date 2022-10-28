@@ -11,8 +11,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,16 +18,20 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.malikazizali.challengechapter6.R
-import com.malikazizali.challengechapter6.databinding.FragmentHomeBinding
 import com.malikazizali.challengechapter6.databinding.FragmentProfileBinding
+import com.malikazizali.challengechapter6.model.SavedPreference
 import com.malikazizali.challengechapter6.viewmodel.BlurViewModelFactory
 import com.malikazizali.challengechapter6.viewmodel.ProfilePictureViewModel
 import com.malikazizali.challengechapter6.viewmodel.UserViewModel
-import com.malikazizali.challengechapter6.worker.OUTPUT_PATH
 import com.malikazizali.challengechapter6.worker.writeBitmapToFile
 import java.io.File
 import java.io.FileOutputStream
@@ -38,13 +40,22 @@ import java.util.*
 
 
 class ProfileFragment : Fragment() {
-    lateinit var binding : FragmentProfileBinding
-    lateinit var userViewModel : UserViewModel
-    lateinit var namaLengkap : String
-    lateinit var username : String
-    lateinit var password : String
-    private val blurViewModel: ProfilePictureViewModel by viewModels { BlurViewModelFactory(requireActivity().application) }
+    lateinit var binding: FragmentProfileBinding
+    lateinit var userViewModel: UserViewModel
+    lateinit var namaLengkap: String
+    lateinit var username: String
+    lateinit var password: String
+    lateinit var session: String
+    private val blurViewModel: ProfilePictureViewModel by viewModels {
+        BlurViewModelFactory(
+            requireActivity().application
+        )
+    }
     private var currLang = ""
+    lateinit var mGoogleSignInClient: GoogleSignInClient
+    private val auth by lazy {
+        FirebaseAuth.getInstance()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,8 +70,18 @@ class ProfileFragment : Fragment() {
         binding.profileProgressBar.visibility = View.GONE
         userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
 
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
+
         setBlurredProfileImage()
-        getSavedData()
+        if(GoogleSignIn.getLastSignedInAccount(requireActivity())!=null){
+            getGoogleData()
+        }else{
+            getSavedData()
+        }
 
         binding.ivEdit.setOnClickListener {
             enableEditMode()
@@ -97,23 +118,61 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle(context?.getString(R.string.dialog_logout_title))
-            builder.setMessage(context?.getString(R.string.dialog_logout_content))
-            builder.setIcon(R.drawable.ic_baseline_language_24_black)
-            builder.setPositiveButton(context?.getString(R.string.dialog_yes)) { dialog, _ ->
-                userViewModel.editSession("false")
-                Toast.makeText(requireActivity(), context?.getString(R.string.success_logout), Toast.LENGTH_SHORT).show()
-                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_loginFragment)
+            if (session == "true") {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle(context?.getString(R.string.dialog_logout_title))
+                builder.setMessage(context?.getString(R.string.dialog_logout_content))
+                builder.setIcon(R.drawable.ic_baseline_language_24_black)
+                builder.setPositiveButton(context?.getString(R.string.dialog_yes)) { dialog, _ ->
+                    userViewModel.editSession("false")
+                    Toast.makeText(
+                        requireActivity(),
+                        context?.getString(R.string.success_logout),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Navigation.findNavController(view)
+                        .navigate(R.id.action_profileFragment_to_loginFragment)
+                }
+                builder.setNegativeButton(context?.getString(R.string.dialog_no)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            } else {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle(context?.getString(R.string.dialog_logout_title))
+                builder.setMessage(context?.getString(R.string.dialog_logout_content))
+                builder.setIcon(R.drawable.ic_baseline_language_24_black)
+                builder.setPositiveButton(context?.getString(R.string.dialog_yes)) { dialog, _ ->
+                    mGoogleSignInClient.signOut().addOnCompleteListener {
+                        userViewModel.editSession("false")
+                        Toast.makeText(
+                            requireActivity(),
+                            context?.getString(R.string.success_logout),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Navigation.findNavController(view)
+                            .navigate(R.id.action_profileFragment_to_loginFragment)
+                    }
+                    builder.setNegativeButton(context?.getString(R.string.dialog_no)) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                }
             }
-            builder.setNegativeButton(context?.getString(R.string.dialog_no)) { dialog, _ ->
-                dialog.dismiss()
-            }
-            val alertDialog: AlertDialog = builder.create()
-            alertDialog.setCancelable(false)
-            alertDialog.show()
         }
 
+    }
+
+    private fun getGoogleData(){
+        val email = SavedPreference.getEmail(requireActivity())!!
+        val username = SavedPreference.getUsername(requireActivity())!!
+        binding.etNamaLengkap.setText(username)
+        binding.etUsername.setText(email)
+        binding.etPassword.setText("-")
     }
 
     private fun getSavedData() {
@@ -121,6 +180,7 @@ class ProfileFragment : Fragment() {
             namaLengkap = it.namaLengkap
             username = it.username
             password = it.password
+            session = it.session.toString()
         }
 
         binding.etNamaLengkap.setText(namaLengkap)
@@ -159,7 +219,7 @@ class ProfileFragment : Fragment() {
         currLang = lang
     }
 
-    fun showChangeLanguageDialogue(currLang : String){
+    fun showChangeLanguageDialogue(currLang: String) {
         if (currLang == "in") {
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle(context?.getString(R.string.dialog_cl_title))
@@ -248,6 +308,7 @@ class ProfileFragment : Fragment() {
             .setNegativeButton(context?.getString(R.string.dialog_no)) { dialog, _ -> dialog.cancel() }
             .show()
     }
+
     private fun chooseImageDialog() {
         AlertDialog.Builder(requireActivity())
             .setMessage(context?.getString(R.string.choose_picture))
@@ -268,6 +329,7 @@ class ProfileFragment : Fragment() {
                 handleCameraImage(result.data)
             }
         }
+
     private fun handleCameraImage(intent: Intent?) {
         val bitmap = intent?.extras?.get("data") as Bitmap
         binding.ivProfile.setImageBitmap(bitmap)
@@ -286,19 +348,25 @@ class ProfileFragment : Fragment() {
             setBlurredProfileImage()
         }
 
-    private fun setBlurredProfileImage(){
-        val img = BitmapFactory.decodeFile(requireActivity().applicationContext.filesDir.path + File.separator +"blur_filter_outputs"+ File.separator +"Blurred-Image.png")
-        if(img!=null){
+    private fun setBlurredProfileImage() {
+        val img =
+            BitmapFactory.decodeFile(requireActivity().applicationContext.filesDir.path + File.separator + "blur_filter_outputs" + File.separator + "Blurred-Image.png")
+        if (img != null) {
             binding.ivProfile.setImageBitmap(img)
-        }else{
-            Toast.makeText(requireActivity(), context?.getString(R.string.profile_picture_empty), Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(
+                requireActivity(),
+                context?.getString(R.string.profile_picture_empty),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
-    private fun saveProfileImage(uri : Uri){
+    private fun saveProfileImage(uri: Uri) {
         val resolver = requireActivity().applicationContext.contentResolver
         val picture = BitmapFactory.decodeStream(
-            resolver.openInputStream(Uri.parse(uri.toString())))
+            resolver.openInputStream(Uri.parse(uri.toString()))
+        )
         blurViewModel.applyBlur()
         writeBitmapToFile(requireActivity(), picture)
         //save normal version
