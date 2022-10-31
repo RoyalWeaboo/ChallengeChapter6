@@ -16,7 +16,7 @@ import com.malikazizali.challengechapter6.viewmodel.UserViewModel
 class SplashFragment : Fragment() {
     lateinit var binding: FragmentSplashBinding
     lateinit var userViewModel : UserViewModel
-    lateinit var session : String
+    var session : String = "false"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +41,8 @@ class SplashFragment : Fragment() {
                 Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_loginFragment)
             else if(session=="true")
                 Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_homeFragment)
+            else
+                Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_loginFragment)
         }, 3000)
     }
 }

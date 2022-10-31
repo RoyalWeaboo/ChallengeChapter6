@@ -45,7 +45,7 @@ class ProfileFragment : Fragment() {
     lateinit var namaLengkap: String
     lateinit var username: String
     lateinit var password: String
-    lateinit var session: String
+    lateinit var session : String
     private val blurViewModel: ProfilePictureViewModel by viewModels {
         BlurViewModelFactory(
             requireActivity().application
@@ -77,9 +77,9 @@ class ProfileFragment : Fragment() {
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         setBlurredProfileImage()
-        if(GoogleSignIn.getLastSignedInAccount(requireActivity())!=null){
+        if (GoogleSignIn.getLastSignedInAccount(requireActivity()) != null) {
             getGoogleData()
-        }else{
+        } else {
             getSavedData()
         }
 
@@ -118,33 +118,12 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-            if (session == "true") {
-                val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle(context?.getString(R.string.dialog_logout_title))
-                builder.setMessage(context?.getString(R.string.dialog_logout_content))
-                builder.setIcon(R.drawable.ic_baseline_language_24_black)
-                builder.setPositiveButton(context?.getString(R.string.dialog_yes)) { dialog, _ ->
-                    userViewModel.editSession("false")
-                    Toast.makeText(
-                        requireActivity(),
-                        context?.getString(R.string.success_logout),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Navigation.findNavController(view)
-                        .navigate(R.id.action_profileFragment_to_loginFragment)
-                }
-                builder.setNegativeButton(context?.getString(R.string.dialog_no)) { dialog, _ ->
-                    dialog.dismiss()
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
-            } else {
-                val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle(context?.getString(R.string.dialog_logout_title))
-                builder.setMessage(context?.getString(R.string.dialog_logout_content))
-                builder.setIcon(R.drawable.ic_baseline_language_24_black)
-                builder.setPositiveButton(context?.getString(R.string.dialog_yes)) { dialog, _ ->
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(context?.getString(R.string.dialog_logout_title))
+            builder.setMessage(context?.getString(R.string.dialog_logout_content))
+            builder.setIcon(R.drawable.ic_baseline_language_24_black)
+            builder.setPositiveButton(context?.getString(R.string.dialog_yes)) { dialog, _ ->
+                if (GoogleSignIn.getLastSignedInAccount(requireActivity()) != null) {
                     mGoogleSignInClient.signOut().addOnCompleteListener {
                         userViewModel.editSession("false")
                         Toast.makeText(
@@ -155,19 +134,29 @@ class ProfileFragment : Fragment() {
                         Navigation.findNavController(view)
                             .navigate(R.id.action_profileFragment_to_loginFragment)
                     }
-                    builder.setNegativeButton(context?.getString(R.string.dialog_no)) { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                } else {
+                    userViewModel.editSession("false")
+                    Toast.makeText(
+                        requireActivity(),
+                        context?.getString(R.string.success_logout),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Navigation.findNavController(view)
+                        .navigate(R.id.action_profileFragment_to_loginFragment)
                 }
             }
+            builder.setNegativeButton(context?.getString(R.string.dialog_no)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+
         }
 
     }
 
-    private fun getGoogleData(){
+    private fun getGoogleData() {
         val email = SavedPreference.getEmail(requireActivity())!!
         val username = SavedPreference.getUsername(requireActivity())!!
         binding.etNamaLengkap.setText(username)
