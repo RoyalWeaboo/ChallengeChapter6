@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
-import com.malikazizali.protodatastore.UserProto
+import com.malikazizali.challengechapter6.UserProto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import java.io.IOException

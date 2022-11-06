@@ -1,10 +1,7 @@
 package com.malikazizali.challengechapter6.view
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.content.IntentSender
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +28,7 @@ class LoginFragment : Fragment() {
     lateinit var username : String
     lateinit var password : String
     lateinit var mGoogleSignInClient: GoogleSignInClient
+    var validationStatus : String = ""
     val Req_Code:Int = 1
     var firebaseAuth = FirebaseAuth.getInstance()
 
@@ -67,7 +65,8 @@ class LoginFragment : Fragment() {
             binding.loginProgressBar.visibility = View.VISIBLE
             val usernameInput = binding.etUsername.text.toString()
             val passwordInput = binding.etPassword.text.toString()
-            if (usernameInput!=""&&passwordInput!="") {
+            val validate = LoginValidation
+            if (validate.validateLogin(usernameInput,passwordInput) == "validated") {
                 if(usernameInput == username && passwordInput == password){
                     userViewModel.editSession("true")
                     Toast.makeText(requireActivity(), context?.getString(R.string.success_login), Toast.LENGTH_SHORT).show()
@@ -79,8 +78,7 @@ class LoginFragment : Fragment() {
                 }
             }
             else{
-                binding.loginProgressBar.visibility = View.GONE
-                Toast.makeText(requireActivity(), context?.getString(R.string.empty_login_input), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "Username or password can't be empty", Toast.LENGTH_SHORT).show()
             }
             binding.loginProgressBar.visibility = View.GONE
         }

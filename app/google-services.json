@@ -14,6 +14,88 @@
       },
       "oauth_client": [
         {
+          "client_id": "571067766246-hs90hds9qgvgi53097b1vd63jujmsb72.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.malikazizali.challengechapter6",
+            "certificate_hash": "525f6de3af4cfc8d016c4978d69143e5c553988d"
+          }
+        },
+        {
+          "client_id": "571067766246-vlkinot8fk9bse5ibm0isoce472ocvpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7APQL6mOq6dXel-2JqaZbEVZAX4wUQVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571067766246-vlkinot8fk9bse5ibm0isoce472ocvpc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571067766246:android:70790549741b7c84f23227",
+        "android_client_info": {
+          "package_name": "com.malikazizali.challengechapter6.darkversion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571067766246-jijt2qntnra56sm27123qd5kdt8pr8rk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.malikazizali.challengechapter6.darkversion",
+            "certificate_hash": "525f6de3af4cfc8d016c4978d69143e5c553988d"
+          }
+        },
+        {
+          "client_id": "571067766246-vlkinot8fk9bse5ibm0isoce472ocvpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7APQL6mOq6dXel-2JqaZbEVZAX4wUQVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571067766246-vlkinot8fk9bse5ibm0isoce472ocvpc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571067766246:android:e07687aaa4b79429f23227",
+        "android_client_info": {
+          "package_name": "com.malikazizali.challengechapter6.lightversion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571067766246-t9j2nhsc3huat95kaghu434ta58f9d9v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.malikazizali.challengechapter6.lightversion",
+            "certificate_hash": "525f6de3af4cfc8d016c4978d69143e5c553988d"
+          }
+        },
+        {
           "client_id": "571067766246-vlkinot8fk9bse5ibm0isoce472ocvpc.apps.googleusercontent.com",
           "client_type": 3
         }

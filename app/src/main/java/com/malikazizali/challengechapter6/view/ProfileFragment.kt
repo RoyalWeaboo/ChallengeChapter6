@@ -79,6 +79,7 @@ class ProfileFragment : Fragment() {
         setBlurredProfileImage()
         if (GoogleSignIn.getLastSignedInAccount(requireActivity()) != null) {
             getGoogleData()
+            binding.ivEdit.visibility = View.GONE
         } else {
             getSavedData()
         }

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "com.malikazizali.protodatastore";
+option java_package = "com.malikazizali.challengechapter6";
 option java_multiple_files = true;
 
 message UserProto {

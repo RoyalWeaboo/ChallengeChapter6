@@ -3,7 +3,7 @@ package com.malikazizali.challengechapter6.datastore
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
 import com.google.protobuf.InvalidProtocolBufferException
-import com.malikazizali.protodatastore.UserProto
+import com.malikazizali.challengechapter6.UserProto
 import java.io.InputStream
 import java.io.OutputStream
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ChallengeChapter6</string>
+    <string name="tmdblogomasuk">login_logo</string>
+    <string name="button_login">Login</string>
+    <string name="tv_belumpunyaakun">Don\'t have an account yet ?</string>
+    <string name="tv_daftar">Register</string>
+    <string name="tv_login">Login</string>
+    <string name="tv_register">Register</string>
+    <string name="tv_sudahpunyaakun">Already have an account ?</string>
+    <string name="konfirmasi_password">Confirm Password</string>
+    <string name="nama_lengkap">Fullname</string>
+    <string name="judulFilm">Title</string>
+    <string name="movieLanguage">Language</string>
+    <string name="movie_image_description">movie image</string>
+    <string name="perbarui_profil">Update Profile</string>
+    <string name="keluar">Logout</string>
+    <string name="profilTitle">Profile</string>
+    <string name="desc_title">Movie Detail</string>
+    <string name="tanggal_rilis">Release Date :</string>
+    <string name="welcome_user">Welcome,</string>
+    <string name="home">Home</string>
+    <string name="pass_tidak_sesuai">Password does not match !</string>
+    <string name="success_reg">Successfully registered a new account !</string>
+    <string name="failed_reg">Failed to register a new account !</string>
+    <string name="no_data">There is no data to show !</string>
+    <string name="empty_login_input">Username and Password cannot be empty !</string>
+    <string name="failed_login">Wrong Username or Password</string>
+    <string name="empty_login_database">Empty login data !</string>
+    <string name="success_login">Login Successful !</string>
+    <string name="success_update">Successfully updated profile data !</string>
+    <string name="detail_film">Synopsis :</string>
+    <string name="bahasa">Language :</string>
+    <string name="detailmovieposter">Movie Poster</string>
+    <string name="back_to_home">Back to home</string>
+    <string name="profil">Profile</string>
+    <string name="ganti_bahasa">Change Language</string>
+    <string name="foto_profil">Profile Picture</string>
+    <string name="perbarui_data_user">Update User Data</string>
+    <string name="success_logout">Logged out from app !</string>
+    <string name="film_favoritmu">Your Favorites Movies</string>
+    <string name="tambah_film_fav">Successfully added to favorites !</string>
+    <string name="dialog_cl_title">Change Language</string>
+    <string name="dialog_cl_content">Change Language to Bahasa ?
+        The app will be restarted to apply the changes</string>
+    <string name="dialog_logout_title">Logout</string>
+    <string name="dialog_yes">Confirm</string>
+    <string name="dialog_no">Cancel</string>
+    <string name="dialog_logout_content">Logout from this account ?</string>
+    <string name="profile_picture_empty">No profil picture found</string>
+    <string name="choose_picture">Choose picture from</string>
+    <string name="dialog_perm_content">Permission is denied, Please allow permissions from App Settings.</string>
+    <string name="dialog_perm_title">Permission Denied</string>
+    <string name="hapus_film_fav">Success deleting favorites !</string>
+    <string name="login_with_google">Login With Google</string>
+
+</resources>

@@ -3,6 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/activity_main.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/fragment_detail.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/fragment_favorites.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/fragment_home.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/fragment_login.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/fragment_profile.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/fragment_register.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/fragment_splash.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/item_favorites.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/layout/item_movie.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/darkversion/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/lightversion/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/lightversion/res/layout/fragment_detail.xml" value="0.1" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/lightversion/res/layout/fragment_favorites.xml" value="0.1" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/lightversion/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/lightversion/res/layout/fragment_splash.xml" value="0.1" />
+        <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/lightversion/res/layout/item_favorites.xml" value="0.16354166666666667" />
         <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/main/res/layout/fragment_detail.xml" value="0.16354166666666667" />
         <entry key="..\:/Users/ricki/AndroidStudioProjects/ChallengeChapter6/app/src/main/res/layout/fragment_favorites.xml" value="0.16354166666666667" />
